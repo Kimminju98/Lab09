@@ -1,19 +1,14 @@
 package edu.handong.cess.java.lab09;
 import java.util.Scanner;
 
-// SalesMen[] team = new SalesMen(team.lenght);
-// SalesMen team[] = new SalesMen(team.lenght);
-
-//SalesMen[] team;
-//team = new SalesMen[team.lenght];
 
 public class SalesReporter {
 
 	private int numberOfSalesmen;
 	private double highestSales;
 	private double averageSales;
-	private SalesMen[] team; // array 하나에 여러 information 담을 수 있다.  클래스를 그것으로
-	// 여기에 team을 instantiate 할 수 없는 이유는 : team의 size를 모르기 때문이다.
+	private SalesMen[] team; 
+	
 	
 	public static void main(String [] args) {
 		
@@ -38,27 +33,25 @@ public class SalesReporter {
 		
 		team = new SalesMen[numberOfSalesmen];
 		
+		Scanner myScanner = new Scanner(System.in);
 		
 		for(int i=0 ; i<numberOfSalesmen ; i++) {
 			
 			//team = new SalesMen[i];
 			
-			//team[i]= new SalesMen();
+			team[i]= new SalesMen();
 			
-			Scanner myScanner = new Scanner(System.in);
+		
 			System.out.println("Enter data for associate number "+ (i+1));
 			
 			System.out.print("Enter name of slaes associate :");
 			String name = myScanner.nextLine();
 			
-			System.out.print("Enter associate's sales");
+			System.out.print("Enter associate's sales: $");
 			double sales = myScanner.nextDouble();
+			myScanner.nextLine();
 			
-			//SalesMen mySalesMen = new SalesMen(); //이런식으로 해줘야되는데, 이때 어레이 사용
-		    //mySalesMen.setName(name);
-			//mySalesMen.setSales(sales);
-			
-			team[i].setName(name); //array도 타입이고, instantiate 해줘야된다. 아니면 메모리 할당이 안된다.
+			team[i].setName(name);			
 			team[i].setSales(sales);
 			
 		}
@@ -107,25 +100,27 @@ public class SalesReporter {
 	}
 	
 	public void displayResults() {
-		System.out.println("Average sales per associate is " + averageSales);
-		System.out.println("The hightest slaes figure is  " + highestSales);
+		//String averageSales=String.format("%.1f", averageSales);
+		System.out.print("Average sales per associate is $");
+		System.out.printf("%.1f\n",averageSales);
+		System.out.println("The hightest slaes figure is $" + highestSales);
 		
 		
 		System.out.println("The following had the hightest slaes:");
 		for(int i=0 ; i<team.length; i++) {
 			if(team[i].getSales()==highestSales) {
 				System.out.println("Name :" + team[i].getName());
-				System.out.println("Sales :" + team[i].getSales());
+				System.out.println("Sales : $" + team[i].getSales());
 				System.out.println(team[i].getDistance() + "above the average");
 				System.out.println("\n");
 			}
 		}
 		
-		System.out.println("Other sales guys");
+		System.out.println("The rest performed as follows");
 		for(int i=0 ; i<team.length; i++) {
 			if(team[i].getSales()!=highestSales) {
 				System.out.println("Name :" + team[i].getName());
-				System.out.println("Sales :" + team[i].getSales());
+				System.out.println("Sales : $" + team[i].getSales());
 				System.out.println(team[i].getDistance() + team[i].getCompare() + " the average");
 				System.out.println("\n");
 				
@@ -135,6 +130,5 @@ public class SalesReporter {
 	}
 	
 	
-	// rename, 자동완성기능, 두줄 띄우고 싶을때
 	
 }
