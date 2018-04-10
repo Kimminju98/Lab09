@@ -1,7 +1,15 @@
 package edu.handong.cess.java.lab09;
 import java.util.Scanner;
 
-
+/**
+ * This is SalesReporter class
+ * It has main,run,SalesReporter,getData(),computeSates(),highestSales(),distanceFromAverage(),Compare(),displayResults() methods.
+ * <p>
+ * This object get SalesMen information and print out all salesMen information and highest sales men
+ * 
+ * @author MinJu
+ *
+ */
 public class SalesReporter {
 
 	private int numberOfSalesmen;
@@ -9,26 +17,45 @@ public class SalesReporter {
 	private double averageSales;
 	private SalesMen[] team; 
 	
-	
+	/**
+	 * This is main implement main method.
+	 * It call run method.
+	 * @param args
+	 */
 	public static void main(String [] args) {
 		
 		SalesReporter myReporter = new SalesReporter();
-		myReporter.getData();
-		myReporter.computeSates();
-		myReporter.hightestSales();
-		myReporter.distanceFromAverage();
-		myReporter.Compare();
-		myReporter.displayResults();
+		myReporter.run();
 		
 	}
-	
+	/**
+	 * This is run method.
+	 * This method runs all method.
+	 */
+	public void run() {
+		getData();
+		computeSates();
+		highestSales();
+		distanceFromAverage();
+		Compare();
+		displayResults();
+	}
+	/**
+	 * This is SalesReporter method.
+	 * It is constructor.
+	 * Enter the number of salesmen.
+	 */
 	public SalesReporter() {
 		System.out.print("Enter number of sales associates :");
 		Scanner myScanner = new Scanner(System.in);
 		
 		numberOfSalesmen = myScanner.nextInt(); 
 	}
-	
+	/**
+	 * This is getData method.
+	 * Enter the sales men name and sales.
+	 * and then this method save the data.
+	 */
 	public void getData() {
 		
 		team = new SalesMen[numberOfSalesmen];
@@ -44,7 +71,7 @@ public class SalesReporter {
 		
 			System.out.println("Enter data for associate number "+ (i+1));
 			
-			System.out.print("Enter name of slaes associate :");
+			System.out.print("Enter name of sales associate :");
 			String name = myScanner.nextLine();
 			
 			System.out.print("Enter associate's sales: $");
@@ -56,6 +83,10 @@ public class SalesReporter {
 			
 		}
 	}
+	/**
+	 * This is computeSates method.
+	 * It computes average sales.
+	 */
 	public void computeSates() {
 		
 		double sum = 0;
@@ -69,8 +100,11 @@ public class SalesReporter {
 		
 		averageSales = sum/numberOfSalesmen;
 	}
-	
-	public void hightestSales() {
+	/**
+	 * This is highestSales method
+	 * It finds highest sales and saves the data.
+	 */
+	public void highestSales() {
 		
 		
 		for(int i=0 ; i<team.length-1 ; i++) {
@@ -82,7 +116,10 @@ public class SalesReporter {
 		
 		
 	}
-	
+	/**
+	 * This method is distanceFromAverage
+	 * It saves each salesmen's data that is difference sales from average sales.
+	 */
 	public void distanceFromAverage() {
 		double distance;
 		for(int i=0 ; i<team.length ; i++) {
@@ -90,7 +127,12 @@ public class SalesReporter {
 			team[i].setDistance(distance);
 		}
 	}
-	
+	/**
+	 * This is Compare method.
+	 * It saves each salesmen's data.
+	 * if first salesmen's sales are higher than average sales, the data is "above"
+	 * else the data is "below"
+	 */
 	public void Compare() {
 		String compare;
 		for(int i=0 ; i<numberOfSalesmen ; i++) {
@@ -98,7 +140,13 @@ public class SalesReporter {
 			else team[i].setCompare("above");
 		}
 	}
-	
+	/**
+	 * This is displayResults method.
+	 * It prints out all sales men information
+	 * first, it prints out average sales and highest sales.
+	 * second, it prints out highest sales men's name and sales, distance from average sales.
+	 * finally it prints out other sales men's informations that are same as highest sales men.
+	 */
 	public void displayResults() {
 		//String averageSales=String.format("%.1f", averageSales);
 		System.out.print("Average sales per associate is $");
