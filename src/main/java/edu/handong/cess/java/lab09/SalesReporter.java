@@ -12,10 +12,10 @@ import java.util.Scanner;
  */
 public class SalesReporter {
 
-	private int numberOfSalesmen;
-	private double highestSales;
-	private double averageSales;
-	private SalesMen[] team; 
+	private int numberOfSalesmen; // It is total number of salesmen.
+	private double highestSales; // It is highest salesmen's sales.
+	private double averageSales; // It is average of salesmen's sales.
+	private SalesMen[] team;  // This array need to get same type information about salesmen and it's type is SalesMen class.
 	
 	/**
 	 * This is main implement main method.
@@ -24,15 +24,15 @@ public class SalesReporter {
 	 */
 	public static void main(String [] args) {
 		
-		SalesReporter myReporter = new SalesReporter();
-		myReporter.run();
+		SalesReporter myReporter = new SalesReporter(); // Instantiate SalesReporter by using myReporter name
+		myReporter.run(); // call run method.
 		
 	}
 	/**
 	 * This is run method.
 	 * This method runs all method.
 	 */
-	public void run() {
+	public void run() {  // in the run method, the other methods need not instantiate. just call!
 		getData();
 		computeSates();
 		highestSales();
@@ -46,10 +46,10 @@ public class SalesReporter {
 	 * Enter the number of salesmen.
 	 */
 	public SalesReporter() {
-		System.out.print("Enter number of sales associates :");
-		Scanner myScanner = new Scanner(System.in);
+		System.out.print("Enter number of sales associates :"); // print out the string.
+		Scanner myScanner = new Scanner(System.in); // instantiate Scanner class.
 		
-		numberOfSalesmen = myScanner.nextInt(); 
+		numberOfSalesmen = myScanner.nextInt(); // put the user's input to numberOfSalesmen.
 	}
 	/**
 	 * This is getData method.
@@ -58,28 +58,28 @@ public class SalesReporter {
 	 */
 	public void getData() {
 		
-		team = new SalesMen[numberOfSalesmen];
+		team = new SalesMen[numberOfSalesmen]; // instantiate team array. Instantiated number is same as numberOfSalesmen.
 		
-		Scanner myScanner = new Scanner(System.in);
+		Scanner myScanner = new Scanner(System.in); // instantiate Scanner class.
 		
-		for(int i=0 ; i<numberOfSalesmen ; i++) {
+		for(int i=0 ; i<numberOfSalesmen ; i++) { // numberOfSalesmen times repeat.
 			
 			//team = new SalesMen[i];
 			
-			team[i]= new SalesMen();
+			team[i]= new SalesMen(); // instantiate each of sales men by using team array
 			
 		
-			System.out.println("Enter data for associate number "+ (i+1));
+			System.out.println("Enter data for associate number "+ (i+1)); // show the number of salesmen.
+			 
+			System.out.print("Enter name of sales associate :"); // print out string.
+			String name = myScanner.nextLine(); // put salesmen's name to name.
 			
-			System.out.print("Enter name of sales associate :");
-			String name = myScanner.nextLine();
+			System.out.print("Enter associate's sales: $"); // print out string.
+			double sales = myScanner.nextDouble(); // put salesmen's sales to sales. 
+			myScanner.nextLine(); // It needs to avoid nextDouble problem.
 			
-			System.out.print("Enter associate's sales: $");
-			double sales = myScanner.nextDouble();
-			myScanner.nextLine();
-			
-			team[i].setName(name);			
-			team[i].setSales(sales);
+			team[i].setName(name); // call setName method and give name			
+			team[i].setSales(sales); // call setSales method and give sales.
 			
 		}
 	}
@@ -89,16 +89,16 @@ public class SalesReporter {
 	 */
 	public void computeSates() {
 		
-		double sum = 0;
+		double sum = 0; //It needs to sum all salesmen's sales.
 		
-		for(int i=0 ; i<team.length ; i++) {
+		for(int i=0 ; i<team.length ; i++) { // numberOfSalesmen times repeat.
 			
-			double sales = team[i].getSales();
-			sum = sum + sales;
+			double sales = team[i].getSales(); // call getSales method to save sales information in sales.
+			sum = sum + sales; // sum sales.
 			
 		}
 		
-		averageSales = sum/numberOfSalesmen;
+		averageSales = sum/numberOfSalesmen; // compute average sales.
 	}
 	/**
 	 * This is highestSales method
@@ -106,11 +106,11 @@ public class SalesReporter {
 	 */
 	public void highestSales() {
 		
-		
-		for(int i=0 ; i<team.length-1 ; i++) {
+		highestSales=team[0].getSales(); // highest sales is first sales's men sales at first. 
+		for(int i=0 ; i<team.length-1 ; i++) { // numberOfSalesmen times repeat.
 			
-			if(team[i].getSales() < team[i+1].getSales()) {
-				highestSales = team[i+1].getSales();
+			if(team[i].getSales() < team[i+1].getSales()) { // compare two salesmen's sales and if next salesmen's sales is higher than smaller number's salesmen's sales.
+				highestSales = team[i+1].getSales(); // Change the highestSales to next salesmen's sales.
 			}
 		}
 		
@@ -121,10 +121,10 @@ public class SalesReporter {
 	 * It saves each salesmen's data that is difference sales from average sales.
 	 */
 	public void distanceFromAverage() {
-		double distance;
-		for(int i=0 ; i<team.length ; i++) {
-			distance=Math.abs((team[i]).getSales()-averageSales);
-			team[i].setDistance(distance);
+		double distance; // It is used to compute difference sales from average sales.
+		for(int i=0 ; i<team.length ; i++) { // Repeat number of salesmen times
+			distance=Math.abs((team[i]).getSales()-averageSales); // Put each of salesmen's sales - average sales to distance.
+			team[i].setDistance(distance); // call setDistance method to save distance about each of salesmen.
 		}
 	}
 	/**
@@ -134,10 +134,10 @@ public class SalesReporter {
 	 * else the data is "below"
 	 */
 	public void Compare() {
-		String compare;
-		for(int i=0 ; i<numberOfSalesmen ; i++) {
-			if(averageSales>team[i].getSales()) team[i].setCompare("below");
-			else team[i].setCompare("above");
+		String compare; // It is used to compare each of sales'men sales to average sales and save the string
+		for(int i=0 ; i<numberOfSalesmen ; i++) { // Repeat number of salesmen times.
+	    if(averageSales>team[i].getSales()) team[i].setCompare("below"); // if average sales is higher than each salesmen's sales, save below t
+			else team[i].setCompare("above"); // else save above
 		}
 	}
 	/**
@@ -149,27 +149,27 @@ public class SalesReporter {
 	 */
 	public void displayResults() {
 		//String averageSales=String.format("%.1f", averageSales);
-		System.out.print("Average sales per associate is $");
-		System.out.printf("%.1f\n",averageSales);
-		System.out.println("The hightest slaes figure is $" + highestSales);
+		System.out.print("Average sales per associate is $"); // print out string
+		System.out.printf("%.1f\n",averageSales); // print out average sales.
+		System.out.println("The hightest slaes figure is $" + highestSales); // print out highest sales.
 		
 		
-		System.out.println("The following had the hightest slaes:");
-		for(int i=0 ; i<team.length; i++) {
-			if(team[i].getSales()==highestSales) {
-				System.out.println("Name :" + team[i].getName());
-				System.out.println("Sales : $" + team[i].getSales());
-				System.out.println(team[i].getDistance() + "above the average");
+		System.out.println("The following had the hightest slaes:"); // print out string
+		for(int i=0 ; i<team.length; i++) { // Repeat number of salesmen times.
+			if(team[i].getSales()==highestSales) { // if some salesmen's sales is same as highestSales
+				System.out.println("Name :" + team[i].getName()); // print out that salesmen's name
+				System.out.println("Sales : $" + team[i].getSales()); // print out that salesmen's sales
+				System.out.println(team[i].getDistance() + "above the average"); //// print out that salesmen's distance
 				System.out.println("\n");
 			}
 		}
 		
-		System.out.println("The rest performed as follows");
-		for(int i=0 ; i<team.length; i++) {
-			if(team[i].getSales()!=highestSales) {
-				System.out.println("Name :" + team[i].getName());
-				System.out.println("Sales : $" + team[i].getSales());
-				System.out.println(team[i].getDistance() + team[i].getCompare() + " the average");
+		System.out.println("The rest performed as follows"); // print out string.
+		for(int i=0 ; i<team.length; i++) { // Repeat number of salesmen times.
+			if(team[i].getSales()!=highestSales) { // That is print out all sales's men information except highest salesmen.
+				System.out.println("Name :" + team[i].getName()); // print out that salesmen's name
+				System.out.println("Sales : $" + team[i].getSales()); // print out that salesmen's sales.
+				System.out.println(team[i].getDistance() + team[i].getCompare() + " the average"); // print out that salesmen's distance and below or above
 				System.out.println("\n");
 				
 			}
