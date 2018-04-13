@@ -1,4 +1,5 @@
 package edu.handong.cess.java.lab09;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -12,10 +13,10 @@ import java.util.Scanner;
  */
 public class SalesReporter {
 
-	private int numberOfSalesmen; // It is total number of salesmen.
+	//private int numberOfSalesmen; // It is total number of salesmen.
 	private double highestSales; // It is highest salesmen's sales.
 	private double averageSales; // It is average of salesmen's sales.
-	private SalesMen[] team;  // This array need to get same type information about salesmen and it's type is SalesMen class.
+	private ArrayList<SalesMen> team; // change the team array to team array list.
 	
 	/**
 	 * This is main implement main method.
@@ -40,17 +41,7 @@ public class SalesReporter {
 		Compare();
 		displayResults();
 	}
-	/**
-	 * This is SalesReporter method.
-	 * It is constructor.
-	 * Enter the number of salesmen.
-	 */
-	public SalesReporter() {
-		System.out.print("Enter number of sales associates :"); // print out the string.
-		Scanner myScanner = new Scanner(System.in); // instantiate Scanner class.
-		
-		numberOfSalesmen = myScanner.nextInt(); // put the user's input to numberOfSalesmen.
-	}
+	
 	/**
 	 * This is getData method.
 	 * Enter the sales men name and sales.
@@ -58,17 +49,18 @@ public class SalesReporter {
 	 */
 	public void getData() {
 		
-		team = new SalesMen[numberOfSalesmen]; // instantiate team array. Instantiated number is same as numberOfSalesmen.
+		team = new ArrayList<SalesMen>(); // instantiate team array. Instantiated number is same as numberOfSalesmen.
 		
 		Scanner myScanner = new Scanner(System.in); // instantiate Scanner class.
+		int i=0;
 		
-		for(int i=0 ; i<numberOfSalesmen ; i++) { // numberOfSalesmen times repeat.
+		while(true) {
 			
 			//team = new SalesMen[i];
 			
-			team[i]= new SalesMen(); // instantiate each of sales men by using team array
+			//team[i]= new ArrayList<SalesMen>();// instantiate each of sales men by using team array
 			
-		
+			
 			System.out.println("Enter data for associate number "+ (i+1)); // show the number of salesmen.
 			 
 			System.out.print("Enter name of sales associate :"); // print out string.
@@ -78,8 +70,8 @@ public class SalesReporter {
 			double sales = myScanner.nextDouble(); // put salesmen's sales to sales. 
 			myScanner.nextLine(); // It needs to avoid nextDouble problem.
 			
-			team[i].setName(name); // call setName method and give name			
-			team[i].setSales(sales); // call setSales method and give sales.
+			team.add(new String(name));// call setName method and give name			
+			team.setSales(sales); // call setSales method and give sales.
 			
 		}
 	}
