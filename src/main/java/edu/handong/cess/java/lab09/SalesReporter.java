@@ -48,15 +48,12 @@ public class SalesReporter {
 	 */
 	public void getData() {
 		
-		team = new ArrayList<SalesMen>(); // instantiate team array. Instantiated number is same as numberOfSalesmen.
+		team = new ArrayList<SalesMen>(); // instantiate team arraylist. the object is SalesMen.
 		
 		Scanner myScanner = new Scanner(System.in); // instantiate Scanner class.
 		int i=0;
 		
-		while(true) {
-			//team[i]= new ArrayList<SalesMen>();// instantiate each of sales men by using team array
-			
-			
+		while(true) { 
 			System.out.println("Enter data for associate number "+ (i+1)); // show the number of salesmen.
 			 
 			System.out.print("Enter name of sales associate :"); // print out string.
@@ -69,9 +66,9 @@ public class SalesReporter {
 			team.add(new SalesMen(name,sales));
 			i++;
 			
-			System.out.print("Do you want to enter more information? ");
+			System.out.print("Do you want to enter more information?(y or n) "); // if user want to stop, enter the n
 			String is = myScanner.nextLine();
-			if(is.equals("n")) break;
+			if(is.equals("n")) break; // while statement exit.
 			
 		}
 	}
@@ -83,9 +80,8 @@ public class SalesReporter {
 		
 		double sum = 0; //It needs to sum all salesmen's sales.
 		int i=0;
-		for(SalesMen e : team) { 
-			//System.out.println("What is SalesMen : "+e);
-			double sales = team.get(i).getSales();
+		for(SalesMen e : team) { // repeat until team is exit
+			double sales = team.get(i).getSales(); // input each of team's Sales information to sales.
 			sum = sum + sales; // sum sales.
 			i++;
 		}
@@ -99,7 +95,7 @@ public class SalesReporter {
 	public void highestSales() {
 		
 		highestSales=team.get(0).getSales(); // highest sales is first sales's men sales at first. 
-		for(int i=0 ; i<team.size()-1 ; i++) { 
+		for(int i=0 ; i<team.size()-1 ; i++) {  // repeat size of team -1 times.
 			
 			if(team.get(i).getSales() < team.get(i+1).getSales()) { // compare two salesmen's sales and if next salesmen's sales is higher than smaller number's salesmen's sales.
 				highestSales = team.get(i+1).getSales(); // Change the highestSales to next salesmen's sales.
@@ -147,7 +143,7 @@ public class SalesReporter {
 		
 		
 		System.out.println("The following had the hightest slaes:"); // print out string
-		for(int i=0 ; i<team.size(); i++) { // Repeat number of salesmen times.
+		for(int i=0 ; i<team.size(); i++) { // Repeat number of teams times.
 			if(team.get(i).getSales()==highestSales) { // if some salesmen's sales is same as highestSales
 				System.out.println("Name :" + team.get(i).getName()); // print out that salesmen's name
 				System.out.println("Sales : $" + team.get(i).getSales()); // print out that salesmen's sales
@@ -157,7 +153,7 @@ public class SalesReporter {
 		}
 		
 		System.out.println("The rest performed as follows"); // print out string.
-		for(int i=0 ; i<team.size(); i++) { // Repeat number of salesmen times.
+		for(int i=0 ; i<team.size(); i++) { // Repeat number of teams times.
 			if(team.get(i).getSales()!=highestSales) { // That is print out all sales's men information except highest salesmen.
 				System.out.println("Name :" + team.get(i).getName()); // print out that salesmen's name
 				System.out.println("Sales : $" + team.get(i).getSales()); // print out that salesmen's sales.
