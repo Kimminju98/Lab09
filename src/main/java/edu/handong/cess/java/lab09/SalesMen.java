@@ -16,7 +16,7 @@ public class SalesMen { // This class needed to hide information.
 	 * This is getCompare method.
 	 * @return compare string type
 	 */
-	
+
 	public SalesMen(String name, double sales) {
 		this.name = name;
 		this.sales = sales;
